@@ -34,11 +34,15 @@ def cuantosPrimos(n: int) -> int:
 def cuantosPerfectos(n: int) -> int:
     numeroPerfectos = 0
     for i in range(1, n):
-        if esPrimo(i):
+        if esPerfecto(i):
             numeroPerfectos += 1
     return numeroPerfectos
 
 def main():
-    numero = input("Por favor, introduzca un número entero positivo: ")
+    numero = int(input("Por favor, introduzca un número entero positivo: "))
     print(f"Hay {cuantosPrimos(numero)} números primos entre el 1 y el {numero}")
     print(f"Hay {cuantosPerfectos(numero)} números perfectos entre el 1 y el {numero}")
+
+
+if __name__ == "__main__":
+    main()
