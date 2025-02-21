@@ -68,3 +68,21 @@ def test_numeros_especiales():
     
     valores = [2, 0, 6, 1, 25, 2]
     assert resultados == valores
+
+def test_benchmark_numeros_especiales_10(benchmark):
+    resultado = benchmark(numeros_especiales, 10)
+    
+    assert resultado[PRIMOS] == 4
+    assert resultado [PERFECTOS] == 1
+
+def test_benchmark_numeros_especiales_100(benchmark):
+    resultado = benchmark(numeros_especiales, 100)
+    
+    assert resultado[PRIMOS] == 25
+    assert resultado[PERFECTOS] == 2
+
+def test_benchmark_numeros_especiales_0(benchmark):
+    resultado = benchmark(numeros_especiales, 0)
+    
+    assert resultado[PRIMOS] == resultado[PERFECTOS]
+

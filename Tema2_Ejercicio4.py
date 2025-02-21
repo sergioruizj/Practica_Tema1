@@ -64,3 +64,25 @@ for arista in arbol_expansion_minima:
     suma_tot += arista[PESO]
 
 print(f'\nEl coste total de instalación asciende a {suma_tot}€')
+
+
+
+#######################
+#        TEST         #
+#######################
+
+def test_tema2_ejercicio4():
+    nodos = [{1}, {2}, {3}, {4}]
+    aristas = []
+    aristas.append((1, 2, 1))
+    aristas.append((1, 3, 4))
+    aristas.append((2, 3, 7))
+    aristas.append((2, 4, 5))
+
+    arbol_minimo = kruskal(aristas, nodos)
+    assert 3 == len(arbol_minimo)
+    
+    resultados = [(1, 2, 1), (1, 3, 4), (2, 4, 5)]
+
+    for i in range(len(arbol_minimo)):
+        assert resultados[i] == arbol_minimo[i]
