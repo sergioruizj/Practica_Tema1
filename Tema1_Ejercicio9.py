@@ -21,7 +21,30 @@ if __name__ == "__main__":
 #        TEST         #
 #######################
 
-def test_coprobar_sumatorio_100(benchmark): 
+def test_comprobar_sumatorio():
+    numeros = [5, 15, 30]
+    resultados = []
+    for num in numeros:
+        resultados.append(sumaRec(num))
+    
+    valores = [15, 120, 465]
+    assert resultados == valores
+def test_benchmark_coprobar_sumatorio_100(benchmark): 
     resultado = benchmark(sumaRec, 100)
 
     assert resultado == 5050
+
+def test_benchmark_comprobar_sumatorio_10(benchmark):
+    resultado = benchmark(sumaRec, 10)
+
+    assert resultado == 55
+
+def test_benchmark_comprobar_sumatorio_0(benchmark):
+    resultado = benchmark(sumaRec, 0)
+
+    assert resultado == 0
+
+def test_benchmark_comprobar_sumatorio_20(benchmark):
+    resultado = benchmark(sumaRec, 20)
+
+    assert resultado == 210
