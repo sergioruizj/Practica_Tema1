@@ -2,6 +2,7 @@
 S =  1 + 2 + 3 + 4 + ⋯. + n - 1 + n Realiza un análisis de eficiencia y de complejidad.'''
 
 
+
 def sumaRec(n: int) -> int:
     if n == 0:
         return n
@@ -14,3 +15,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+#######################
+#        TEST         #
+#######################
+
+def test_coprobar_sumatorio_100(benchmark): 
+    resultado = benchmark(sumaRec, 100)
+
+    return resultado == 5050
