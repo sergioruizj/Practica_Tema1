@@ -4,6 +4,9 @@ número N. Realiza un análisis de eficiencia y de complejidad.'''
 
 import math
 
+PRIMOS = 0
+PERFECTOS = 1
+
 def esPrimo(n: int) -> bool:
     primo = True
     raiz = math.sqrt(n)
@@ -38,11 +41,30 @@ def cuantosPerfectos(n: int) -> int:
             numeroPerfectos += 1
     return numeroPerfectos
 
+def numeros_especiales(n: int):
+    return cuantosPrimos(n), cuantosPerfectos(n)
+
 def main():
     numero = int(input("Por favor, introduzca un número entero positivo: "))
-    print(f"Hay {cuantosPrimos(numero)} números primos entre el 1 y el {numero}")
-    print(f"Hay {cuantosPerfectos(numero)} números perfectos entre el 1 y el {numero}")
+    calculo = numeros_especiales(numero)
+    print(f"Hay {calculo[PRIMOS]} números primos entre el 1 y el {numero}")
+    print(f"Hay {calculo[PERFECTOS]} números perfectos entre el 1 y el {numero}")
 
 
 if __name__ == "__main__":
     main()
+
+
+#######################
+#        TEST         #
+#######################
+
+def test_numeros_especiales():
+    numeros = [5, 15, 100]
+    resultados = []
+    for num in numeros:
+        resultados.append(numeros_especiales(num)[PRIMOS])
+        resultados.append(numeros_especiales(num)[PERFECTOS])
+    
+    valores = [2, 0, 6, 1, 25, 2]
+    assert resultados == valores
