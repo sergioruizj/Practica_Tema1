@@ -24,4 +24,4 @@ if __name__ == "__main__":
 def test_coprobar_sumatorio_100(benchmark): 
     resultado = benchmark(sumaRec, 100)
 
-    return resultado == 5050
+    assert resultado == 5050
