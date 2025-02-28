@@ -1,34 +1,30 @@
-def mejor_candidato(candidatos: list) -> any:
-    """ Devuelve un candidato (el primero disponible) """
-    return candidatos[0]  # Tomamos el primero para evaluar y lo eliminamos luego
-
-def es_completable(solucion: list, candidato: any) -> bool:
-    """ Siempre se puede agregar un candidato, ya que buscamos mínimo y máximo """
-    return True
-
-def voraz(candidatos: list) -> list:
-    """ Algoritmo voraz para encontrar el mínimo y el máximo """
-    solucion = []
+def encontrar_min_max(vector):
+    n = len(vector)
     
-    # Inicializamos con el primer elemento
-    if len(candidatos) == 0:
-        return None, None
-
-    minimo = maximo = candidatos[0]
+    if n == 0:
+        return None, None  # Caso de vector vacío
     
-    while len(candidatos) > 0:
-        c = mejor_candidato(candidatos)
-        candidatos.remove(c)
+    # Inicialización dependiendo de si n es par o impar
+    if n % 2 == 0:
+        minimo, maximo = min(vector[0], vector[1]), max(vector[0], vector[1])
+        i = 2  # Comenzamos desde el tercer elemento
+    else:
+        minimo, maximo = vector[0], vector[0]
+        i = 1  # Comenzamos desde el segundo elemento
 
-        # Actualizamos mínimo y máximo si es necesario
-        if c < minimo:
-            minimo = c
-        if c > maximo:
-            maximo = c
-    
-    return [minimo, maximo]
+    # Recorremos en pares
+    while i < n - 1:
+        if vector[i] < vector[i + 1]:
+            minimo = min(minimo, vector[i])
+            maximo = max(maximo, vector[i + 1])
+        else:
+            minimo = min(minimo, vector[i + 1])
+            maximo = max(maximo, vector[i])
+        i += 2  # Avanzamos de dos en dos
+
+    return minimo, maximo
 
 # Ejemplo de uso
 vector = [7, 2, 9, 3, 1, 6, 8, 4]
-resultado = voraz(vector)
-print(f"Mínimo: {resultado[0]}, Máximo: {resultado[1]}")
+minimo, maximo = encontrar_min_max(vector)
+print(f"Mínimo: {minimo}, Máximo: {maximo}")
