@@ -28,8 +28,10 @@ def voraz(reservas):
         if not asignado:
             pistas.append([reserva])  # Se necesita una nueva pista
     
-    return len(pistas)
+    return pistas
 
 # Ejemplo de uso
 reservas = [(10, 12), (9, 11), (11, 13), (10, 12)]
-print(voraz(reservas))  # Salida: 3
+solucion = voraz(reservas)
+print(solucion)
+print(len(solucion))  # Salida: 3
