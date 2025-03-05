@@ -30,13 +30,13 @@ def buscarMinimo(f: callable, x0: int, x1: int, epsilon: float) -> float:
        
 
         if (f(mitad - epsilon) > f(mitad + epsilon)):
-            buscar(mitad, b)
+            return buscar(mitad, b)
         else:
-            buscar(a, mitad)
+            return buscar(a, mitad)
 
     return buscar(x0, x1)
 
 def cuadrado(x):
     return x**2 - 4*x
 
-print(buscarMinimo(cuadrado, 0, 20, 0.001))
+print(buscarMinimo(cuadrado, 0, 20, 0.00001))
