@@ -40,7 +40,70 @@ def buscarMinimo(funcion: callable, x0: int, x1: int, epsilon: float) -> float:
     return buscar(x0, x1)
 
 def cuadrado(x):
-    return x**2 - 4*x
+    return x**2
 
+def main(): 
+    print(buscarMinimo(cuadrado, -200, 20, 0.01))
 
-print(buscarMinimo(cuadrado, 0, 20, 0.00001))
+if __name__ == "__main__":
+    main()
+
+##############################
+#          TESTS             #
+##############################
+
+def test_buscarMinimo():
+    def _cuadrado(x: int) -> int: # Mínimo en x = 0
+        return x**2
+    
+    def _cuadrado1(x: int) -> int: # Mínimo en x = 1
+        return x**2 -2*x
+    
+    def _cuadrado2(x: int) -> int: # Mínimo en x = 2
+        return x**2 - 4*x
+    
+    def _cuadrado3(x: int) -> int: # Mínimo en x = 3
+        return x**2 - 6*x
+    
+    def _cuadrado4(x: int) -> int: # Mínimo en x = 4
+        return x**2 - 8*x
+    
+
+    # Array con los mínimos calculados con "buscarMinimo()"
+    resultados = [buscarMinimo(_cuadrado, 0, 10, 0.0001), buscarMinimo(_cuadrado1, 0, 10, 0.0001), 
+                  buscarMinimo(_cuadrado2, 0, 10, 0.0001), buscarMinimo(_cuadrado3, 0, 10, 0.0001), 
+                  buscarMinimo(_cuadrado4, 0, 10, 0.0001)]
+    
+
+    # Comprobación de los mínimos obtenidos con los mínimos reales de las funciones
+    for i in range(5):
+        assert abs(resultados[i] - i) <= 0.0001
+
+def test_benchmark_buscarMinimo():
+    import Tests_timer
+    import sys
+    import math
+
+    def _seno1(x: float) -> float:
+        return math.sin(x)
+    
+    def _seno2(x: float) -> float:
+        return math.sin(math.sqrt(x))
+    
+    @Tests_timer.benchmark
+    def _timer_buscarMinimo(func: callable, x0: int, x1: int, epsilon: float) -> tuple:
+        return buscarMinimo(func, x0, x1, epsilon)
+    
+    Tests_timer.warmup()
+    print()
+    eps1 = 0.0001
+    eps2 = 0.0000001
+    resultado1 = _timer_buscarMinimo(_seno1, -1, 1, eps1)
+    resultado2 = _timer_buscarMinimo(_seno2, 3, 56, eps2)
+    assert abs(resultado1[0] + 1) <= eps1
+    assert abs(resultado2[0] - 22.20661) <= eps2
+
+    print(f'\nTiempo empleado para la funcion f(x) = sen(x) en [-1, 1] con epsilon {eps1}: {resultado1[1]} ms\n')
+
+    print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) con epsilon {eps2}: {resultado2[1]} ms\n')
+

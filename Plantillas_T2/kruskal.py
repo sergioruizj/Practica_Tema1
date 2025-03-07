@@ -39,22 +39,25 @@ def kruskal(aristas :list, conjuntos :list) -> list:
             union(conjuntos, arista)
     return solucion
 
-# Programa
-nodos = [{1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}]
-aristas = []
-aristas.append((1, 2, 3))
-aristas.append((1, 7, 4))
-aristas.append((2, 3, 2))
-aristas.append((2, 5, 1))
-aristas.append((3, 4, 5))
-aristas.append((4, 5, 4))
-aristas.append((4, 6, 2))
-aristas.append((5, 6, 9))
-aristas.append((5, 7, 7))
-aristas.append((6, 7, 3))
-aristas.append((6, 8, 3))
-aristas.append((7, 8, 2))
+def main(): # Programa
+    nodos = [{1}, {2}, {3}, {4}, {5}, {6}, {7}, {8}]
+    aristas = []
+    aristas.append((1, 2, 3))
+    aristas.append((1, 7, 4))
+    aristas.append((2, 3, 2))
+    aristas.append((2, 5, 1))
+    aristas.append((3, 4, 5))
+    aristas.append((4, 5, 4))
+    aristas.append((4, 6, 2))
+    aristas.append((5, 6, 9))
+    aristas.append((5, 7, 7))
+    aristas.append((6, 7, 3))
+    aristas.append((6, 8, 3))
+    aristas.append((7, 8, 2))
 
-arbol_expansion_minima = kruskal(aristas, nodos)
-for arista in arbol_expansion_minima:
-    print(arista)
+    arbol_expansion_minima = kruskal(aristas, nodos)
+    for arista in arbol_expansion_minima:
+        print(arista)
+
+if __name__ == "__main__":
+    main()

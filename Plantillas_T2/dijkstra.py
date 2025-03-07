@@ -33,22 +33,25 @@ def camino_mas_corto(grafo :dict, origen :str, destino :str) -> list|int:
    camino.reverse()
    return camino, distancia
 
-# Programa
-grafo = { # origen: {destino: peso}
-    'a': {'b': 4, 'c': 3},
-    'b': {'d': 5},
-    'c': {'b': 2, 'd': 3, 'e': 6},
-    'd': {'f': 5, 'e': 1},
-    'e': {'g': 5},
-    'g': {'z': 4},
-    'f': {'g': 2, 'z': 7},
-    'z': {}
-}
+def main(): # Programa
+    grafo = { # origen: {destino: peso}
+        'a': {'b': 4, 'c': 3},
+        'b': {'d': 5},
+        'c': {'b': 2, 'd': 3, 'e': 6},
+        'd': {'f': 5, 'e': 1},
+        'e': {'g': 5},
+        'g': {'z': 4},
+        'f': {'g': 2, 'z': 7},
+        'z': {}
+    }
 
-distancias, predecesores = dijkstra(grafo, 'a')
-print(f'Distancias: {distancias}')
-print(f'Predecesores: {predecesores}')
+    distancias, predecesores = dijkstra(grafo, 'a')
+    print(f'Distancias: {distancias}')
+    print(f'Predecesores: {predecesores}')
 
-camino, distancia = camino_mas_corto(grafo, 'a', 'z')
-print(f'Camino: {camino}')
-print(f'Distancia: {distancia}')
+    camino, distancia = camino_mas_corto(grafo, 'a', 'z')
+    print(f'Camino: {camino}')
+    print(f'Distancia: {distancia}')
+
+if __name__ == "__main__":
+    main()

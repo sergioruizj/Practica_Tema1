@@ -12,11 +12,9 @@ para la aproximación.'''
 
 def buscarValores(f: callable, x0: float, x1: float, k: float, epsilon: float) -> list:
     def buscar(a, b) -> list:
-        if ((b - a) < epsilon):
-            if (abs(f((a + b) / 2) - k) < epsilon):
-                return [(a, b)]
-            else:
-                return []
+        if (abs((b - a) < epsilon)):
+           return [[a, b]]
+            
         
         mid = (a + b) / 2
         f_mid = f(mid)
@@ -34,6 +32,14 @@ def buscarValores(f: callable, x0: float, x1: float, k: float, epsilon: float) -
     return buscar(x0, x1)
 
 def cuadrado(x):
-    return x**6-5*x**4+4*x**2
+    return x**2
 
-print(buscarValores(cuadrado, 0, 0.5, 0.2, 0.0001))
+def main(): 
+    print(buscarValores(cuadrado, -2, 2, 1, 0.0001))
+
+if __name__ == "__main__":
+    main()
+
+##############################
+#          TESTS             #
+##############################

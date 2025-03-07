@@ -30,8 +30,12 @@ def voraz(reservas):
     
     return pistas
 
-# Ejemplo de uso
-reservas = [(10, 12), (9, 11), (11, 13), (10, 12)]
-solucion = voraz(reservas)
-print(solucion)
-print(len(solucion))  # Salida: 3
+def main(): # Ejemplo de uso
+    reservas = [(10, 12), (9, 11), (11, 13), (10, 12)]
+    solucion = voraz(reservas)
+    print(solucion)
+    print(len(solucion))  # Salida: 3
+
+if __name__ == "__main__":
+    main()
+

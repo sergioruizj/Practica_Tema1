@@ -26,6 +26,7 @@ def contar_caracteres(cadena :str) -> int:
 ##############################
 #          TESTS             #
 ##############################
+
 # Pytest ejecuta las funciones que empiezan por test_
 def test_contar_caracteres():
     nombres    = ['Ángel', 'Pepe', 'angel', 'josé']
