@@ -83,12 +83,6 @@ def test_benchmark_buscarMinimo():
     import Tests_timer
     import sys
     import math
-
-    def _seno1(x: float) -> float:
-        return math.sin(x)
-    
-    def _seno2(x: float) -> float:
-        return math.sin(math.sqrt(x))
     
     @Tests_timer.benchmark
     def _timer_buscarMinimo(func: callable, x0: int, x1: int, epsilon: float) -> tuple:
@@ -96,14 +90,32 @@ def test_benchmark_buscarMinimo():
     
     Tests_timer.warmup()
     print()
+
+    def _seno1(x: float) -> float:
+        return math.sin(x)
+    
+    def _seno2(x: float) -> float:
+        return math.sin(math.sqrt(x))
+    
+    def _seno3(x: float) -> float:
+        return 5*x*math.sin(x)
+    
     eps1 = 0.0001
     eps2 = 0.0000001
+    eps3 = 0.001
+
     resultado1 = _timer_buscarMinimo(_seno1, -1, 1, eps1)
     resultado2 = _timer_buscarMinimo(_seno2, 3, 56, eps2)
+    resultado3 = _timer_buscarMinimo(_seno3, 8.2, 14.2, eps3)
+
     assert abs(resultado1[0] + 1) <= eps1
     assert abs(resultado2[0] - 22.20661) <= eps2
+    assert abs(resultado3[0] - 11.08553846) <= eps3
 
     print(f'\nTiempo empleado para la funcion f(x) = sen(x) en [-1, 1] con epsilon {eps1}: {resultado1[1]} ms\n')
 
-    print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) con epsilon {eps2}: {resultado2[1]} ms\n')
+    print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) en el intervalo [3, 56] con epsilon {eps2}: {resultado2[1]} ms\n')
+
+    print(f'Tiempo empleado para la funcion f(x) = 5sen(x) en el intervalo [8.2, 14.2] con epsilon {eps3}: {resultado3[1]} ms\n')
+
 
