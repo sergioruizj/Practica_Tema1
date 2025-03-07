@@ -21,7 +21,10 @@ tarda Indiana Croft en desplazarse a lo largo del puente es nulo y que la estima
 del punto del río por donde descolgarse puede tener un error de aproximación de ε 
 metros (ε es una constante dada).'''
 
-def buscarMinimo(f: callable, x0: int, x1: int, epsilon: float) -> float:
+# En la firma del método "buscarMinimo" metémos como parámetro la funcion que defina la forma del supuesto puente.
+# Hay que tener cuidado para que dicha función en el intervalo [x0, x1] tenga un solo mínimo.
+
+def buscarMinimo(funcion: callable, x0: int, x1: int, epsilon: float) -> float:
     def buscar(a: int, b: int) -> float:
         mitad = (a + b)/2
 
@@ -29,7 +32,7 @@ def buscarMinimo(f: callable, x0: int, x1: int, epsilon: float) -> float:
             return mitad
        
 
-        if (f(mitad - epsilon) > f(mitad + epsilon)):
+        if (funcion(mitad - epsilon) > funcion(mitad + epsilon)):
             return buscar(mitad, b)
         else:
             return buscar(a, mitad)
@@ -38,5 +41,6 @@ def buscarMinimo(f: callable, x0: int, x1: int, epsilon: float) -> float:
 
 def cuadrado(x):
     return x**2 - 4*x
+
 
 print(buscarMinimo(cuadrado, 0, 20, 0.00001))

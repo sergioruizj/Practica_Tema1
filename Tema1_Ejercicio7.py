@@ -44,6 +44,7 @@ def cuantosPerfectos(n: int) -> int:
 def numeros_especiales(n: int):
     return cuantosPrimos(n), cuantosPerfectos(n)
 
+
 def main():
     numero = int(input("Por favor, introduzca un número entero positivo: "))
     calculo = numeros_especiales(numero)
