@@ -42,8 +42,10 @@ def buscarMinimo(funcion: callable, x0: int, x1: int, epsilon: float) -> float:
 def cuadrado(x):
     return x**2
 
+
 def main(): 
-    print(buscarMinimo(cuadrado, -200, 20, 0.01))
+    resultado = buscarMinimo(cuadrado, -200, 20, 0.0001)
+    print(f'El mínimo de la función f(x) = x^2 en el intervalo [-200, 20] con epsiln 0.0001 es {resultado}')
 
 if __name__ == "__main__":
     main()
@@ -104,18 +106,23 @@ def test_benchmark_buscarMinimo():
     eps2 = 0.0000001
     eps3 = 0.001
 
-    resultado1 = _timer_buscarMinimo(_seno1, -1, 1, eps1)
-    resultado2 = _timer_buscarMinimo(_seno2, 3, 56, eps2)
-    resultado3 = _timer_buscarMinimo(_seno3, 8.2, 14.2, eps3)
+    x00 = -1
+    x01 = 1
+    x10 = 3
+    x11 = 56
+    x20 = 8.2
+    x21 = 14.2
+
+    resultado1 = _timer_buscarMinimo(_seno1, x00, x01, eps1)
+    resultado2 = _timer_buscarMinimo(_seno2, x10, x11, eps2)
+    resultado3 = _timer_buscarMinimo(_seno3, x20, x21, eps3)
 
     assert abs(resultado1[0] + 1) <= eps1
     assert abs(resultado2[0] - 22.20661) <= eps2
     assert abs(resultado3[0] - 11.08553846) <= eps3
 
-    print(f'\nTiempo empleado para la funcion f(x) = sen(x) en [-1, 1] con epsilon {eps1}: {resultado1[1]} ms\n')
+    print(f'\nTiempo empleado para la funcion f(x) = sen(x) en [{x00}, {x01}] con epsilon {eps1}: {resultado1[1]} ms\n')
 
-    print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) en el intervalo [3, 56] con epsilon {eps2}: {resultado2[1]} ms\n')
+    print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) en el intervalo [{x10}, {x11}] con epsilon {eps2}: {resultado2[1]} ms\n')
 
-    print(f'Tiempo empleado para la funcion f(x) = 5sen(x) en el intervalo [8.2, 14.2] con epsilon {eps3}: {resultado3[1]} ms\n')
-
-
+    print(f'Tiempo empleado para la funcion f(x) = 5sen(x) en el intervalo [{x20}, {x21}] con epsilon {eps3}: {resultado3[1]} ms\n')
