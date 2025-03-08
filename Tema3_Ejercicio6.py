@@ -83,7 +83,6 @@ def test_buscarMinimo():
 
 def test_benchmark_buscarMinimo():
     import Tests_timer
-    import sys
     import math
     
     @Tests_timer.benchmark
