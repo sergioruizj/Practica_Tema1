@@ -56,7 +56,10 @@ def main(): # Programa
     aristas.append(('Bilbao', 'Guadalajara', 3000))
     aristas.append(('Santander', 'Guadalajara', 2000))
 
+
     arbol_expansion_minima = kruskal(aristas, nodos)
+
+    print(arbol_expansion_minima)
     for arista in arbol_expansion_minima:
         print(f'El coste de {arista[U]} a {arista[V]} es de {arista[PESO]}€')
 
@@ -89,3 +92,46 @@ def test_tema2_ejercicio4():
 
     for i in range(len(arbol_minimo)):
         assert resultados[i] == arbol_minimo[i]
+
+def test_benchmark_tema2_ejercicio4():
+    import Tests_timer
+    
+    @Tests_timer.benchmark
+    def _timer_kruskal(aristas: list, nodos: list) -> list:
+        return kruskal(aristas, nodos)
+    
+    Tests_timer.warmup()
+
+    nodos = [{'Madrid'}, {'Burgos'}, {'Sevilla'}, {'Barcelona'}, {'Valencia'}, {'Bilbao'}, {'Santander'}, {'Guadalajara'}]
+    aristas = []
+    aristas.append(('Madrid', 'Burgos', 3000))
+    aristas.append(('Madrid', 'Santander', 4000))
+    aristas.append(('Burgos', 'Sevilla', 2000))
+    aristas.append(('Burgos', 'Valencia', 1000))
+    aristas.append(('Sevilla', 'Barcelona', 5000))
+    aristas.append(('Barcelona', 'Valencia', 4000))
+    aristas.append(('Barcelona', 'Bilbao', 2000))
+    aristas.append(('Valencia', 'Bilbao', 9000))
+    aristas.append(('Valencia', 'Santander', 7000))
+    aristas.append(('Bilbao', 'Santander', 3000))
+    aristas.append(('Bilbao', 'Guadalajara', 3000))
+    aristas.append(('Santander', 'Guadalajara', 2000))
+
+    resultado = _timer_kruskal(aristas, nodos)
+
+    suma_tot = 0
+    for arista in resultado[0]:
+        suma_tot += arista[PESO]
+    
+    resultado_teorico = [('Burgos', 'Valencia', 1000), ('Burgos', 'Sevilla', 2000), ('Barcelona', 'Bilbao', 2000), 
+                         ('Santander', 'Guadalajara', 2000), ('Madrid', 'Burgos', 3000), ('Bilbao', 'Santander', 3000), ('Madrid', 'Santander', 4000)]
+    assert suma_tot == 17000
+
+    for i in range(0, len(resultado[0])):
+        assert resultado[0][i] == resultado_teorico[i]
+
+    print(f'\nEl tiempo empleado para la ejecución del algoritmo es de {resultado[1]} ms\n')
+
+
+
+    
