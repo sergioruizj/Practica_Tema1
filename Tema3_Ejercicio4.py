@@ -51,7 +51,12 @@ def probar_corcho(botella, corcho) -> str:
 
 
 # Probador
-botellas = [5, 2, 8, 3, 7]  # Representación ficticia de los tamaños de las botellas
-corchos = [3, 7, 2, 8, 5]  # Representación ficticia de los tamaños de los corchos
-parejas = emparejar_botellas_corchos(botellas, corchos)
-print(parejas)
+def main():
+    botellas = [5, 2, 8, 3, 7]  # Representación ficticia de los tamaños de las botellas
+    corchos = [3, 7, 2, 8, 5]  # Representación ficticia de los tamaños de los corchos
+    parejas = emparejar_botellas_corchos(botellas, corchos)
+    print(parejas)
+
+
+if __name__ == "__main__":
+    main()
