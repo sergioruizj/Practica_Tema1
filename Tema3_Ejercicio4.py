@@ -1,4 +1,4 @@
-def emparejar_botellas_corchos(botellas, corchos):
+def emparejar_botellas_corchos(botellas, corchos) -> list:
     if not botellas or not corchos:
         return []
     
@@ -40,7 +40,7 @@ def emparejar_botellas_corchos(botellas, corchos):
     return parejas + parejas_izq + parejas_der
 
 
-def probar_corcho(botella, corcho):
+def probar_corcho(botella, corcho) -> str:
     if corcho < botella:
         return "pequeño"
     elif corcho > botella:
