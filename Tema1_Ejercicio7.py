@@ -41,7 +41,7 @@ def cuantosPerfectos(n: int) -> int:
             numeroPerfectos += 1
     return numeroPerfectos
 
-def numeros_especiales(n: int):
+def numeros_especiales(n: int) -> list:
     return cuantosPrimos(n), cuantosPerfectos(n)
 
 
