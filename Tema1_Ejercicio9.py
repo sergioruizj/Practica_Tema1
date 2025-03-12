@@ -5,7 +5,7 @@ S =  1 + 2 + 3 + 4 + ⋯. + n - 1 + n Realiza un análisis de eficiencia y de co
 
 def sumaRec(n: int) -> int:
     if n == 0:
-        return n
+        return 0
     else:
         return n + sumaRec(n-1)
     
