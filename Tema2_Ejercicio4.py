@@ -59,7 +59,6 @@ def main(): # Programa
 
     arbol_expansion_minima = kruskal(aristas, nodos)
 
-    print(arbol_expansion_minima)
     for arista in arbol_expansion_minima:
         print(f'El coste de {arista[U]} a {arista[V]} es de {arista[PESO]}€')
 
