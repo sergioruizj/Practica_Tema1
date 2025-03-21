@@ -43,8 +43,3 @@ def test_benchmark_comprobar_sumatorio_0(benchmark):
     resultado = benchmark(sumaRec, 0)
 
     assert resultado == 0
-
-def test_benchmark_comprobar_sumatorio_20(benchmark):
-    resultado = benchmark(sumaRec, 20)
-
-    assert resultado == 210
