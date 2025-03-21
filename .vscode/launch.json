@@ -22,14 +22,14 @@
             "type": "debugpy",
             "request": "launch",
             "program": "main.py",
-            "args": ["--test", "--benchmark-time-unit=ms", "--benchmark-warmup=on", "-v", "-s"]
+            "args": ["--test", "-v", "-s"]
         },
         {
             "name": "Run Specific Test (Debug)",
             "type": "debugpy",
             "request": "launch",
             "program": "main.py",
-            "args": ["--test", "--benchmark-time-unit=ms", "--benchmark-warmup=on", "-v", "-s", "-k", "${command:pickArgs}"]
+            "args": ["--test", "-v", "-s", "-k", "${command:pickArgs}"]
         }
     ]
 }
