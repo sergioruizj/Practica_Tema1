@@ -4,7 +4,7 @@ import copy
 RESULT = 0
 TIME = 1
 
-def benchmark(function): 
+def timer(function): 
     """ Decorador para calcular el tiempo de ejecución """
     def wrap(*args, **kwargs):
         num_times = 10
@@ -20,7 +20,7 @@ def benchmark(function):
         return result, avg_time
     return wrap
   
-@benchmark
+@timer
 def countdown(n): 
     """ Bucle mientras n sea mayor que 0 """
     while n > 0: 
@@ -29,20 +29,3 @@ def countdown(n):
 def warmup():
     """ Aumenta la precisión si se ejecuta antes de medir tiempos """
     return countdown(1000000)
-
-if __name__ == '__main__':
-    warmup()
-    
-    sizes = []
-    times = []
-    for i in range(100000, 10000000, 1000000):
-        sizes += [i]
-        times += [countdown(i)[TIME]]
-    
-    import matplotlib.pyplot as plt
-    plt.plot(sizes, times, label='countdown')
-    plt.title('Variación del tiempo en función de n')
-    plt.xlabel('Valor de n')
-    plt.ylabel('Tiempo de ejecución (ms)')
-    plt.legend()
-    plt.show()

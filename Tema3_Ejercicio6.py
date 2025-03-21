@@ -85,7 +85,7 @@ def test_benchmark_buscarMinimo():
     import Tests_timer
     import math
     
-    @Tests_timer.benchmark
+    @Tests_timer.timer
     def _timer_buscarMinimo(func: callable, x0: int, x1: int, epsilon: float) -> tuple:
         return buscarMinimo(func, x0, x1, epsilon)
     

@@ -95,7 +95,7 @@ def test_tema2_ejercicio4():
 def test_benchmark_tema2_ejercicio4():
     import Tests_timer
     
-    @Tests_timer.benchmark
+    @Tests_timer.timer
     def _timer_kruskal(aristas: list, nodos: list) -> list:
         return kruskal(aristas, nodos)
     

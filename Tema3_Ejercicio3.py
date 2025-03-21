@@ -97,7 +97,7 @@ def test_benchmark_buscarValores():
     import Tests_timer
     import math
     
-    @Tests_timer.benchmark
+    @Tests_timer.timer
     def _timer_buscarValores(func: callable, x0: float, x1: float, k: float, epsilon: float) -> tuple:
         return buscarValores(func, x0, x1, k, epsilon)
     

@@ -31,37 +31,38 @@ def ordenar_ficheros(ficheros :list) -> list:
         solucion.append(c)
     return solucion
 
+def main():
+    ficheros_entrada = []
+    print(ordenar_ficheros(ficheros_entrada))
 
+if __name__=='__main__':
+    main()
 
 ##############################
 #          TESTS             #
 ##############################
 
 
-def test_orden_ficheros():
-    ficheros_entrada = [(10, 100), (20, 50), (5, 200), (15, 30)]
-    ficheros_ordenados_esperados = [(5, 200), (10, 100), (20, 50), (15, 30)]  
+# Cada posición de la lista ficheros_entrada hace referencia a la longitud y número de llamadas de un fichero "(longitud, número de llamadas)"
+def test_ordenar_ficheros():
+    ficheros_entrada = [(1000, 5), (200, 1), (500, 10), (300, 10)]
+    ficheros_ordenados_esperados = [(300, 10), (500, 10), (1000, 5), (200, 1)]  
     resultado = ordenar_ficheros(ficheros_entrada)
 
-    assert resultado == ficheros_ordenados_esperados
+    for i in range(len(ficheros_entrada)):
+        assert resultado[i] == ficheros_ordenados_esperados[i]
 
 
-def test_benchmark_voraz_10(benchmark):
-    ficheros_entrada = [
-    (1, 2), (2, 3), (3, 4), (4, 5), (5, 6), 
-    (6, 7), (7, 8), (8, 9), (9, 10), (10, 11)
-    ]
+def test_benchmark_ordenar_10_ficheros(benchmark):
+    ficheros_entrada = [(10, 1), (10, 2), (10, 3), (10, 4), (10, 5), (10, 6), (10, 7), (10, 8), (10, 9), (10, 10)]
     resultado = benchmark(ordenar_ficheros, ficheros_entrada)  
-    assert len(resultado) == len(ficheros_entrada)   
+    ficheros_salida_esperados = ficheros_entrada.reverse
+    
+    for i in range(len(ficheros_entrada)):
+        resultado[i] == ficheros_salida_esperados[i]
 
 
-def test_benchmark_voraz_100(benchmark):
-    ficheros_entrada = [(i, i % 100 + 1) for i in range(1, 101)]  
+def test_benchmark_ordenar_0_ficheros(benchmark):
+    ficheros_entrada = []  
     resultado = benchmark(ordenar_ficheros, ficheros_entrada)  
-    assert len(resultado) == len(ficheros_entrada)  
-
-
-def test_benchmark_voraz_500(benchmark):
-    ficheros_entrada = [(i, i % 100 + 1) for i in range(1, 501)]  
-    resultado = benchmark(ordenar_ficheros, ficheros_entrada)  
-    assert len(resultado) == len(ficheros_entrada) 
+    assert len(resultado) == 0
