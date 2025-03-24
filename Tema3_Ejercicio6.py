@@ -89,9 +89,6 @@ def test_benchmark_buscarMinimo():
     def _timer_buscarMinimo(func: callable, x0: int, x1: int, epsilon: float) -> tuple:
         return buscarMinimo(func, x0, x1, epsilon)
     
-    Tests_timer.warmup()
-    print()
-
     def _seno1(x: float) -> float:
         return math.sin(x)
     
@@ -112,15 +109,18 @@ def test_benchmark_buscarMinimo():
     x20 = 8.2
     x21 = 14.2
 
+    Tests_timer.warmup()
     resultado1 = _timer_buscarMinimo(_seno1, x00, x01, eps1)
+    Tests_timer.warmup()
     resultado2 = _timer_buscarMinimo(_seno2, x10, x11, eps2)
+    Tests_timer.warmup()
     resultado3 = _timer_buscarMinimo(_seno3, x20, x21, eps3)
 
     assert abs(resultado1[0] + 1) <= eps1
     assert abs(resultado2[0] - 22.20661) <= eps2
     assert abs(resultado3[0] - 11.08553846) <= eps3
 
-    print(f'\nTiempo empleado para la funcion f(x) = sen(x) en [{x00}, {x01}] con epsilon {eps1}: {resultado1[1]} ms\n')
+    print(f'\n\nTiempo empleado para la funcion f(x) = sen(x) en [{x00}, {x01}] con epsilon {eps1}: {resultado1[1]} ms\n')
 
     print(f'Tiempo empleado para la funcion f(x) = sen(sqrt(x)) en el intervalo [{x10}, {x11}] con epsilon {eps2}: {resultado2[1]} ms\n')
 

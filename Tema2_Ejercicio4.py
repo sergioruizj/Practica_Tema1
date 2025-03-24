@@ -29,7 +29,7 @@ def is_bucle(conjuntos :list, arista :tuple) -> bool:
     set_v = find(conjuntos, arista[V])
     return set_u == set_v
 
-def kruskal(aristas :list, conjuntos :list) -> list:
+def conectar_ciudades(aristas :list, conjuntos :list) -> list:
     """ Algoritmo de Kruskal """
     aristas = ordena_aristas(aristas)
     solucion = []
@@ -57,7 +57,7 @@ def main(): # Programa
     aristas.append(('Santander', 'Guadalajara', 2000))
 
 
-    arbol_expansion_minima = kruskal(aristas, nodos)
+    arbol_expansion_minima = conectar_ciudades(aristas, nodos)
 
     for arista in arbol_expansion_minima:
         print(f'El coste de {arista[U]} a {arista[V]} es de {arista[PESO]}€')
@@ -84,7 +84,7 @@ def test_tema2_ejercicio4():
     aristas.append((2, 3, 7))
     aristas.append((2, 4, 5))
 
-    arbol_minimo = kruskal(aristas, nodos)
+    arbol_minimo = conectar_ciudades(aristas, nodos)
     assert 3 == len(arbol_minimo)
     
     resultados = [(1, 2, 1), (1, 3, 4), (2, 4, 5)]
@@ -96,10 +96,9 @@ def test_benchmark_tema2_ejercicio4():
     import Tests_timer
     
     @Tests_timer.timer
-    def _timer_kruskal(aristas: list, nodos: list) -> list:
-        return kruskal(aristas, nodos)
+    def _timer_conectar_ciudades(aristas: list, nodos: list) -> list:
+        return conectar_ciudades(aristas, nodos)
     
-    Tests_timer.warmup()
 
     nodos = [{'Madrid'}, {'Burgos'}, {'Sevilla'}, {'Barcelona'}, {'Valencia'}, {'Bilbao'}, {'Santander'}, {'Guadalajara'}]
     aristas = []
@@ -116,7 +115,8 @@ def test_benchmark_tema2_ejercicio4():
     aristas.append(('Bilbao', 'Guadalajara', 3000))
     aristas.append(('Santander', 'Guadalajara', 2000))
 
-    resultado = _timer_kruskal(aristas, nodos)
+    Tests_timer.warmup()
+    resultado = _timer_conectar_ciudades(aristas, nodos)
 
     suma_tot = 0
     for arista in resultado[0]:
@@ -129,7 +129,7 @@ def test_benchmark_tema2_ejercicio4():
     for i in range(0, len(resultado[0])):
         assert resultado[0][i] == resultado_teorico[i]
 
-    print(f'\nEl tiempo empleado para la ejecución del algoritmo es de {resultado[1]} ms\n')
+    print(f'\n\nEl tiempo empleado para la ejecución del algoritmo es de {resultado[1]} ms\n')
 
 
 
