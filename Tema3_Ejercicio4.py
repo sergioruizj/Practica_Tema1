@@ -60,3 +60,44 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+##############################
+#          TESTS             #
+##############################
+
+def test_emparejar_botellas_corchos():
+    botellas = [5, 2, 8, 3, 7]  
+    corchos = [3, 7, 2, 8, 5]  
+
+
+    parejas = emparejar_botellas_corchos(botellas, corchos)
+
+    assert 5 == len(parejas)
+
+    for pareja in parejas:
+        assert pareja[0] == pareja[1]
+
+def test_benchmark_emparejar_botellas_corchos():
+    import Tests_timer
+    import random
+
+    @Tests_timer.timer
+    def _timer_emparejar(botellas: list, corchos: list) -> list:
+        return emparejar_botellas_corchos(botellas, corchos)
+    
+
+    botellas = list(range(1, 1001))
+    corchos = list(range(1, 1001))  
+    random.shuffle(botellas)
+    random.shuffle(corchos)
+
+    Tests_timer.warmup()
+    resultado = _timer_emparejar(botellas, corchos)
+
+    assert 1000 == len(resultado[0])
+
+    for pareja in resultado[0]:
+        assert pareja[0] == pareja[1]
+
+    print(f'\n\nSe ha empleado un total de {resultado[1]} ms en la ejecución del test para un ejemplo de {len(botellas)} elementos')
